@@ -1,0 +1,15 @@
+--	1)	Run secpol.msc on the server.
+
+--	2)	Execute o comando "secpol.msc"
+--	OBS: O comando "secpol.msc" não funciona em algumas edições do Windows: "Home Premium" ou "Basic" Editions.
+
+--	3)	Em "Security Settings" -> "Local Policies" -> Clique em "User Rights Assignment".
+
+--	4)	Na listagem do lado direito, clique duas vezes em "Perform volume maintenance tasks".  (se tiver em portugues: Executar tarefas de manutenção de volume)
+
+--	5)	O usuário do serviço do SQL Server deve ser adicionado aí.
+--	OBS: Para verificar o usuário do serviço, abra o "SQL Configuration Manager" -> "SQL Server Services"
+--		 -> Verificar a coluna "Log On As" da instância desejada.
+
+--	6)	Se o usuário não estiver listado, clique em "Add User or Group" -> Adicione o usuário -> Clique em "OK" -> "Apply".
+--	7)	Feito isso, agora reinicie o SQL Server.
