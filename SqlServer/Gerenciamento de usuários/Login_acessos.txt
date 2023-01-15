@@ -1,0 +1,28 @@
+Entrar no SQL Server. 
+Pesquisador de Objetos. 
+Segurança.
+Logons.
+procurar o usuário. 
+botão direito e propriedades. 
+Mapeamento de Usuários
+selecionar o banco e o tipo de acesso. 
+
+--- Liberar acesso a uma função: 
+GRANT SELECT ON nome_funcao TO nome_usuario
+
+--- Liberar acesso a uma view:
+GRANT SELECT ON nome_view to nome_usuario  
+
+-- Liberar acesso a uma procedure. 
+GRANT EXECUTE ON nome_procedure to nome_usuario
+
+-- Liberar acesso a todas as procedures. 
+GRANT EXECUTE TO nome_usuario 
+
+-- Retirando acesso a uma procedure 
+DENY EXECUTE ON nome_procedure TO nome_usuario
+
+
+
+
+

@@ -1,0 +1,13 @@
+--	Via interface gráfica, seguir os passos abaixo:
+
+--	3.1)	No "Object Explorer", em "Security" -> "Logins"
+
+--	3.2)	Clicar com o botão direito em "Logins" -> "New Login"
+
+--	3.3)	Colocar o nome "Fabricio"
+
+--	3.4)	Escolher a opção "SQL Server Authentication"
+
+--	3.5)	Definir uma senha: "@123"
+
+--      3.6)    Habilitar a opção "Enforce password policy"
