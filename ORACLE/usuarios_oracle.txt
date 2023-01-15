@@ -1,0 +1,11 @@
+create user atfilho identified by "senha" ; Criar
+
+
+alter user "atfilho" identified by "senha" ; Trocar senha 
+
+GRANT CONNECT TO "atfilho";
+GRANT CREATE SESSION TO "atfilho";
+
+
+GRANT SELECT ON corrwin.tmfnegosAinda to atfilho; Dar permissão 
+

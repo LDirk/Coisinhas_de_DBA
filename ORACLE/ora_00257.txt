@@ -1,0 +1,4 @@
+su - oracle
+export ORACLE_SID=ORAHML - Mudar o ambiente 
+rman target /
+delete archivelog all;
