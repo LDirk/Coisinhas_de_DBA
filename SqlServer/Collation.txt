@@ -1,0 +1,8 @@
+1)	Retorna a collation de um database. 
+select DATABASEPROPERTYEX('batimento', 'Collation') SQLCollation
+2)	Retorna a collation de uma instância. 
+select SERVERPROPERTY(N'Collation')
+3)     Verificar todas as collations das databases. 
+select name, collation_name from sys.databases
+
+

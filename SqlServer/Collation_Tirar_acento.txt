@@ -1,0 +1,3 @@
+Declare @cExpressao varchar(30)
+Set @cExpressao = 'aeiouáéíóúàèìòòâêîôûãõäëïöüç'
+Select @cExpressao ANTES,@cExpressao collate sql_latin1_general_cp1251_ci_as DEPOIS
