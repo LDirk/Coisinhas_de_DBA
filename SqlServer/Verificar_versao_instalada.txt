@@ -1,0 +1,7 @@
+select @@version as version 
+	
+	Ou 
+
+select SERVERPROPERTY('productversion') as ProductVersion
+select SERVERPROPERTY('productlevel') as   ProductLevel
+select SERVERPROPERTY('edition') as Edition
