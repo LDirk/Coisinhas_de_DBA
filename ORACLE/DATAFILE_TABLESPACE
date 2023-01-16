@@ -1,0 +1,46 @@
+-- Verifica os tablespace que possuem % de uso maior que 90% 
+
+select 
+TABLESPACE_NAME TBSP_NAME, round(USED_PERCENT,2)USED_PERCENT 
+From DBA_TABLESPACE_USAGE_METRICS WHERE USED_PERCENT >=90;
+
+-- Mostra informações sobre a tablespace
+
+SELECT * FROM 
+(SELECT 
+	c.tablespace_name, 
+	ROUND(a.bytes/1048576,2) MB_Allocated,
+	ROUND((a.bytes-b.bytes)/1048576,2) MB_Used,
+	ROUND(b.bytes/1048576,2) MB_Free,
+	ROUND(b.bytes/a.bytes*100,2) tot_Pct_Free,
+	ROUND((a.bytes-b.bytes)/a.bytes,2) * 100 tot_Pct_Used 
+FROM (SELECT tablespace_name, SUM(a.bytes) bytes FROM sys.DBA_DATA_FILES a GROUP BY tablespace_name) a,
+(SELECT a.tablespace_name, 
+	NVL(SUM(b.bytes),0) bytes FROM sys.DBA_DATA_FILES a, 
+	sys.DBA_FREE_SPACE b 
+WHERE a.tablespace_name = b.tablespace_name (+) AND a.file_id = b.file_id (+) GROUP BY a.tablespace_name) b, 
+sys.DBA_TABLESPACES c 
+WHERE a.tablespace_name = b.tablespace_name(+) AND a.tablespace_name = c.tablespace_name AND a.tablespace_name ='PBM_FIN_DATA') 
+WHERE tot_Pct_Used >=0 ORDER BY tot_Pct_Free; 
+
+-- mostra o data file da tablespace
+col tablespace_name for a40
+col file_name for a60
+select 
+   file_name, 
+   tablespace_name, 
+   (bytes/1024/1024) Mbytes, 
+   autoextensible, 
+   maxbytes, 
+   increment_by 
+   from dba_data_files 
+ where tablespace_name like upper('PBM_FIN_DATA');
+ 
+ -- Aumenta o tamanho do datafile 
+                                -- ('Endereço do datafile a ser aumentado')
+ alter database datafile  '/oracle/coelba/pbneo14/data2/NEOSMFPART2015I02.ora' resize 33720m;
+ 
+-- Cria um novo datafile                     --(Por o endereço do datafile que vc deseja adicionar e o nome do novo arquivo)      
+alter tablespace PBM_FIN_DATA add datafile '/u08/PBMS/datafile/PBM_FIN_DATA_06.dbf' size 30720m;
+ 
+ 
