@@ -1,0 +1,54 @@
+Controlfile é um arquivo binário necessário para iniciar e operar com sucesso o banco de dados.
+Se o Controlfile não estiver acessível por alguma razão, o banco de dados não irá funcionar corretamente. 
+Existe um controlfile para cada instância.
+
+
+-- Um catálogo com diversas informações
+-- Armazena o nome do banco de dados, 
+-- localização e nome dos datafiles, 
+-- localização e nome dos redulogfiles,
+-- sequencias do redulog, 
+-- informações de check
+-- point e as informações do backup do rman. 
+-- etC
+
+1) Logar no usuário oracle como sysdba ou pelo SGBD mesmo.  
+
+-- Informações do que se tem armazenado no controlfile
+
+select distinct type from v$controlfile_record_section;
+
+
+
+-- Para ver onde estão os controlFILES
+DESC V$CONTROLFILE; 
+
+select STATUS,NAME,IS_RECOVERY_DEST_FILE,BLOCK_SIZE,FILE_SIZE_BLKS,CON_ID  FROM  V$CONTROLFILE;
+
+-- Ver os parametros dos control_files
+show parameter control 
+
+
+-- Backup do Controlfile. 
+Entrar no 
+export ORACLE_SID = BLABLA
+rman target / (recovery maneger)
+backup current controlfile;  
+
+
+Se o arquivo for spfile, você pode fazer operações dinâmicas enquanto a instância está no ar. 
+
+-- Para verificar se o arquivo é spfile
+show parameter spfile (Se mostrar um caminho, você está usando um caminho de parametrização dinâmico)
+
+-- Para restartar o banco de dados após mudar os controlfile
+
+srvctl stop database -d AL1 
+srvctl start database -d AL1 -o nomount 
+rman target / 
+
+
+
+
+
+
