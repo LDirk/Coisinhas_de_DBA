@@ -1,0 +1,3 @@
+commit;    - valida a instrução.
+rollback;  - volta a instrução.
+savepoint; - executar até determinado lugar.
