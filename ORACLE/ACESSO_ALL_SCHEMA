@@ -10,3 +10,14 @@ END;
 
 
 EXEC grant_select('ATIVA ','lesantos');
+
+--- ou 
+
+select  'grant select on ' 
+    || owner
+    || '.'
+    || object_name 
+    || ' to LESANTOS;' -- usuário 
+from     ALL_objects
+where     object_type in ('TABLE','VIEW','SEQUENCE')
+AND     owner IN ('CORRWIN') -- Schema
