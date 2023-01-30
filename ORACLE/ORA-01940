@@ -1,0 +1,8 @@
+drop USER USER CASCADE ;
+SELECT SID,SERIAL#,STATUS from v$session where username='USER'; 
+ALTER SYSTEM KILL SESSION '2298,23965';
+
+alter USER USER account lock;
+
+select s.sid, s.serial#, s.status, p.spid from gv$session s, gv$process p where s.username = 'USER' and p.addr (+) = s.paddr;
+alter system kill session '1571,50015,@1'
