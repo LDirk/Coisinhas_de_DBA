@@ -1,0 +1,2 @@
+ALTER SYSTEM KILL SESSION '2992,14771'
+                           SID, SERIAL
